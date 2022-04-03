@@ -12,7 +12,7 @@ import Alamofire
 class ViewController: UIViewController {
 
     var text : String?
-    var url = "https://www.omdbapi.com/?s=king&apikey=757bb97b"
+    var url = "https://www.omdbapi.com/?s=Breaking&apikey=757bb97b"
     var film = [[String:Any]]()
 
 
@@ -43,7 +43,6 @@ class ViewController: UIViewController {
     func fetchFilms() {
         Alamofire.request(url).responseJSON{ (response) in
             if let json = response.result.value as! [String:Any]?{
-                print(json["Search"] as! [[String:Any]])
                 if let responseValue = json["Search"] as! [[String:Any]]?{
                     self.film = responseValue
                     self.tableView.reloadData()
@@ -85,9 +84,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             if film.count > 0 {
                 let filmData = film[indexPath.row]
                 let imageStringPoster = filmData["Poster"] as! String
-                if !imageStringPoster.isEmpty{
-                    inputCell.configure(text: filmData["Title"] as! String, imageStringPoster: imageStringPoster)
-                }
+                let year = filmData["Year"] as! String
+                inputCell.configure(text: filmData["Title"] as! String, imageStringPoster: imageStringPoster, year: year)
+                
             }
         }
         return cell
