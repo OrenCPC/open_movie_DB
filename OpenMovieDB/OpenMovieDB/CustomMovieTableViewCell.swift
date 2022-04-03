@@ -33,6 +33,8 @@ class CustomMovieTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 17, weight: .bold)
         return label
     }()
+    
+
    
     
     // MARK: Setup

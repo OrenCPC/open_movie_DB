@@ -4,6 +4,7 @@ target 'OpenMovieDB' do
   use_frameworks!
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'SnapKit'
   
 
 end

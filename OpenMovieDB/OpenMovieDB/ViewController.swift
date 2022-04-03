@@ -7,9 +7,10 @@
 
 import UIKit
 import Alamofire
+import SnapKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
 
     var text : String?
     var url = "https://www.omdbapi.com/?s=Breaking&apikey=757bb97b"
@@ -27,6 +28,21 @@ class ViewController: UIViewController {
     }()
     
     
+    private let textBox : UITextView = {
+        let textBox = UITextView()
+        textBox.translatesAutoresizingMaskIntoConstraints = false
+        textBox.backgroundColor = .secondarySystemBackground
+        textBox.textColor = .secondaryLabel
+        textBox.font = UIFont.preferredFont(forTextStyle: .body)
+        textBox.layer.cornerRadius = 20
+        textBox.layer.shadowColor = UIColor.gray.cgColor;
+        
+        return textBox
+
+
+    }()
+
+    
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -34,6 +50,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        textBox.delegate = self
+        
         subviews()
         constraints()
         fetchFilms()
@@ -57,16 +76,25 @@ class ViewController: UIViewController {
 extension ViewController {
     func subviews() {
         view.addSubview(tableView)
+        view.addSubview(textBox)
     }
     
     func constraints() {
-            NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: view.topAnchor),
-                tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        
+        textBox.snp.makeConstraints{ make in
+            make.width.height.centerX.equalTo(80)
+            
         }
+        
+        tableView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        
+    }
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
