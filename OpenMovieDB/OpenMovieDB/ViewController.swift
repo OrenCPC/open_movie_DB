@@ -121,7 +121,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.cellForRow(at: indexPath) as? CustomMovieTableViewCell {
             selectedMovieImdbID = cell.imdbID
             let newViewController = DeatilViewController()
-            newViewController.imdbID = selectedMovieImdbID
+//            newViewController.imdbID = selectedMovieImdbID
             self.navigationController?.pushViewController(newViewController, animated: true)
             
 

@@ -19,6 +19,9 @@
 		683D51DF27FB07020035885A /* DeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51DE27FB07020035885A /* DeatilViewController.swift */; };
 		683D51E127FB0B720035885A /* DetailCollectionViewCellWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E027FB0B720035885A /* DetailCollectionViewCellWithImage.swift */; };
 		683D51E327FB0FE10035885A /* SearchDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E227FB0FE10035885A /* SearchDetailed.swift */; };
+		683D51E727FB479E0035885A /* TitleAndYearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E627FB479E0035885A /* TitleAndYearCollectionViewCell.swift */; };
+		683D51E927FB48EC0035885A /* DetailPlotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E827FB48EC0035885A /* DetailPlotCollectionViewCell.swift */; };
+		683D51EB27FB49E90035885A /* DetailPeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51EA27FB49E90035885A /* DetailPeopleCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		683D51DE27FB07020035885A /* DeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatilViewController.swift; sourceTree = "<group>"; };
 		683D51E027FB0B720035885A /* DetailCollectionViewCellWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCellWithImage.swift; sourceTree = "<group>"; };
 		683D51E227FB0FE10035885A /* SearchDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailed.swift; sourceTree = "<group>"; };
+		683D51E627FB479E0035885A /* TitleAndYearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndYearCollectionViewCell.swift; sourceTree = "<group>"; };
+		683D51E827FB48EC0035885A /* DetailPlotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlotCollectionViewCell.swift; sourceTree = "<group>"; };
+		683D51EA27FB49E90035885A /* DetailPeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPeopleCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACE6BF4C594B5AAADD66023D /* Pods-OpenMovieDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenMovieDB.debug.xcconfig"; path = "Target Support Files/Pods-OpenMovieDB/Pods-OpenMovieDB.debug.xcconfig"; sourceTree = "<group>"; };
 		CB6B6FB2B69C96A2BBCAAD57 /* Pods_OpenMovieDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenMovieDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +87,9 @@
 				683D51E027FB0B720035885A /* DetailCollectionViewCellWithImage.swift */,
 				683D51DC27FAE6540035885A /* Search.swift */,
 				683D51D627F98E3A0035885A /* CustomMovieTableViewCell.swift */,
+				683D51E627FB479E0035885A /* TitleAndYearCollectionViewCell.swift */,
+				683D51E827FB48EC0035885A /* DetailPlotCollectionViewCell.swift */,
+				683D51EA27FB49E90035885A /* DetailPeopleCollectionViewCell.swift */,
 				683D51C327F96DAF0035885A /* Main.storyboard */,
 				683D51CB27F96DB10035885A /* Info.plist */,
 			);
@@ -229,11 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				683D51E727FB479E0035885A /* TitleAndYearCollectionViewCell.swift in Sources */,
 				683D51E127FB0B720035885A /* DetailCollectionViewCellWithImage.swift in Sources */,
 				683D51E327FB0FE10035885A /* SearchDetailed.swift in Sources */,
 				683D51D727F98E3A0035885A /* CustomMovieTableViewCell.swift in Sources */,
 				683D51DF27FB07020035885A /* DeatilViewController.swift in Sources */,
 				683D51C227F96DAF0035885A /* ViewController.swift in Sources */,
+				683D51E927FB48EC0035885A /* DetailPlotCollectionViewCell.swift in Sources */,
+				683D51EB27FB49E90035885A /* DetailPeopleCollectionViewCell.swift in Sources */,
 				683D51DD27FAE6540035885A /* Search.swift in Sources */,
 				683D51BE27F96DAF0035885A /* AppDelegate.swift in Sources */,
 				683D51C027F96DAF0035885A /* SceneDelegate.swift in Sources */,
