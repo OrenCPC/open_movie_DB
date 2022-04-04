@@ -11,6 +11,7 @@ import Kingfisher
 class CustomMovieTableViewCell: UITableViewCell {
     
     static let identifier = "CustomTableViewCell"
+    var imdbID: String?
     
     // MARK: Views
     
@@ -22,15 +23,17 @@ class CustomMovieTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let title: UILabel = {
+     let title: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
     private let releaseDate : UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
@@ -52,7 +55,7 @@ class CustomMovieTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(text: String, imageStringPoster: String, year: String) {
+    func configure(text: String, imageStringPoster: String, year: String, imdbID: String) {
         title.text = text
         if !year.isEmpty, year.last! == "-" {
             self.releaseDate.text = String(year.dropLast())
@@ -64,6 +67,7 @@ class CustomMovieTableViewCell: UITableViewCell {
             myImageView.kf.indicatorType = .activity
             myImageView.kf.setImage(with: url)
         }
+        self.imdbID = imdbID
     }
     
     override func prepareForReuse() {
@@ -75,6 +79,9 @@ class CustomMovieTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        self.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+
         
         let imageSize = contentView.frame.size.height - 6
         

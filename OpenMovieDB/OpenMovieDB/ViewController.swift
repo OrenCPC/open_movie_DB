@@ -13,12 +13,12 @@ class ViewController: UIViewController {
     
     private lazy var searchModel = Search()
     var films = [[String:Any]]()
+    var selectedMovieImdbID: String?
 
     
     // MARK: Views
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CustomMovieTableViewCell.self, forCellReuseIdentifier: CustomMovieTableViewCell.identifier)
         return tableView
     }()
@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     
     private let textBox : UITextView = {
         let textBox = UITextView()
-        textBox.translatesAutoresizingMaskIntoConstraints = false
         textBox.backgroundColor = .secondarySystemBackground
         textBox.textColor = .secondaryLabel
         textBox.font = UIFont.preferredFont(forTextStyle: .body)
@@ -47,12 +46,12 @@ class ViewController: UIViewController {
         textBox.text = "Search for movies"
         textBox.textColor = UIColor.lightGray
         
+        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        
         subviews()
         constraints()
         
         startSearch(text: "Breaking Bad")
-
-        
     }
     
     
@@ -78,7 +77,7 @@ extension ViewController {
         textBox.snp.makeConstraints{ make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(100)
             make.height.equalTo(sizeThatFits)
         }
         
@@ -106,7 +105,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 let filmData = films[indexPath.row]
                 let imageStringPoster = filmData["Poster"] as! String
                 let year = filmData["Year"] as! String
-                inputCell.configure(text: filmData["Title"] as! String, imageStringPoster: imageStringPoster, year: year)
+                let filmTitle = filmData["Title"] as! String
+                let imdbID = filmData["imdbID"] as! String
+                inputCell.configure(text: filmTitle, imageStringPoster: imageStringPoster, year: year, imdbID: imdbID)
             }
         }
         return cell
@@ -115,6 +116,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CustomMovieTableViewCell {
+            selectedMovieImdbID = cell.imdbID
+            let newViewController = DeatilViewController()
+            newViewController.imdbID = selectedMovieImdbID
+            self.navigationController?.pushViewController(newViewController, animated: true)
+            
+
+
+         }
+    }
+    
+    
 }
 
 extension ViewController: UITextViewDelegate {

@@ -9,7 +9,20 @@ import UIKit
 
 class DeatilViewController: UIViewController {
     
-    var data = [String: Any]()
+    private lazy var detailedSearchModel = SearchDetailed()
+//    var film = [String:Any]()
+
+
+    var imdbID: String? {
+        didSet {
+            
+        }
+    }
+    
+//    var film = [String:Any]()
+    var film: [String: Any] = ["Title":"The Social Network",
+        "Year":"2010",
+        "Rated":"PG-13","Released":"01 Oct 2010"]
     
     // MARK: Views
     private let collectionView: UICollectionView = {
@@ -17,60 +30,59 @@ class DeatilViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: DetailCollectionViewCellWithImage.identifier)
+
         return collectionView
     }()
     
     
-    private let myImageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.image = UIImage(named: "no_image_available")
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
-    private let FilmTitle : UILabel = {
-       let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        return label
-    }()
-    
-    private let releaseDate : UILabel = {
-       let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        return label
-    }()
-    
-    private let imdbID : UILabel = {
-       let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        return label
-    }()
-    
-    private let movieType : UILabel = {
-       let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        return label
-    }()
-    
+//    private let myImageView: UIImageView = {
+//       let imageView = UIImageView()
+//        imageView.image = UIImage(named: "no_image_available")
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.clipsToBounds = true
+//        return imageView
+//    }()
+//
+//    private let FilmTitle : UILabel = {
+//       let label = UILabel()
+//        label.font = .systemFont(ofSize: 17, weight: .bold)
+//        return label
+//    }()
+//
+//    private let releaseDate : UILabel = {
+//       let label = UILabel()
+//        label.font = .systemFont(ofSize: 17, weight: .bold)
+//        return label
+//    }()
+//
+//    private let imdbID : UILabel = {
+//       let label = UILabel()
+//        label.font = .systemFont(ofSize: 17, weight: .bold)
+//        return label
+//    }()
+//
+//    private let movieType : UILabel = {
+//       let label = UILabel()
+//        label.font = .systemFont(ofSize: 17, weight: .bold)
+//        return label
+//    }()
+//
     
     
     // MARK: Setup
 
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("I arrived bitch")
+        print("this is my imdb bitch \(self.imdbID)")
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         subviews()
         constraints()
-
     }
-
-
 }
 
 extension DeatilViewController {
@@ -106,12 +118,18 @@ extension DeatilViewController {
 }
 
 extension DeatilViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell(frame: .zero)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  DetailCollectionViewCellWithImage.identifier, for: indexPath)
+        if let inputCell = cell as? DetailCollectionViewCellWithImage {
+        
+        }
+
+        return cell
     }
 
 }
