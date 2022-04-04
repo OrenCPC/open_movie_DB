@@ -6,18 +6,14 @@
 //
 
 import UIKit
-import Alamofire
 import SnapKit
 
 
-class ViewController: UIViewController, UITextViewDelegate {
-
-    var text : String?
-    var url = "https://www.omdbapi.com/?s=Breaking&apikey=757bb97b"
-    var film = [[String:Any]]()
-
-
+class ViewController: UIViewController {
     
+    private lazy var searchModel = Search()
+    var films = [[String:Any]]()
+
     
     // MARK: Views
     let tableView: UITableView = {
@@ -35,11 +31,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         textBox.textColor = .secondaryLabel
         textBox.font = UIFont.preferredFont(forTextStyle: .body)
         textBox.layer.cornerRadius = 20
-        textBox.layer.shadowColor = UIColor.gray.cgColor;
-        
         return textBox
-
-
     }()
 
     
@@ -52,21 +44,22 @@ class ViewController: UIViewController, UITextViewDelegate {
         tableView.dataSource = self
         
         textBox.delegate = self
+        textBox.text = "Search for movies"
+        textBox.textColor = UIColor.lightGray
         
         subviews()
         constraints()
-        fetchFilms()
+        
+        startSearch(text: "Breaking Bad")
+
+        
     }
     
     
-    func fetchFilms() {
-        Alamofire.request(url).responseJSON{ (response) in
-            if let json = response.result.value as! [String:Any]?{
-                if let responseValue = json["Search"] as! [[String:Any]]?{
-                    self.film = responseValue
-                    self.tableView.reloadData()
-                }
-            }
+    func startSearch(text: String) {
+        searchModel.searchFilms(text: text) {films in
+            self.films = films
+            self.tableView.reloadData()
         }
     }
 }
@@ -80,22 +73,22 @@ extension ViewController {
     }
     
     func constraints() {
-        
+        let sizeThatFits = textBox.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
+
         textBox.snp.makeConstraints{ make in
-            make.width.height.centerX.equalTo(80)
-            
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(50)
+            make.height.equalTo(sizeThatFits)
         }
         
-        tableView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+        tableView.snp.makeConstraints{ make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(textBox.snp.bottom).offset(30)
         }
-        
-        
     }
 }
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -103,18 +96,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return film.count
+        return films.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomMovieTableViewCell.identifier, for: indexPath)
         if let inputCell = cell as? CustomMovieTableViewCell {
-            if film.count > 0 {
-                let filmData = film[indexPath.row]
+            if films.count > 0 {
+                let filmData = films[indexPath.row]
                 let imageStringPoster = filmData["Poster"] as! String
                 let year = filmData["Year"] as! String
                 inputCell.configure(text: filmData["Title"] as! String, imageStringPoster: imageStringPoster, year: year)
-                
             }
         }
         return cell
@@ -125,27 +117,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//struct Film: Decodable {
-//    let title: String
-//    let year: String
-//    let poster: String
-//
-//
-//    enum CodingKeys: String, CodingKey {
-//        case title = "Title"
-//        case year = "Year"
-//        case poster = "Poster"
-//    }
-//}
-//
-//
-//struct Films: Decodable {
-//  let count: Int
-//  let all: [Film]
-//
-//  enum CodingKeys: String, CodingKey {
-//    case count = "totalResults"
-//    case all = "Search"
-//  }
-//}
-//
+extension ViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        startSearch(text: textView.text)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textBox.textColor == UIColor.lightGray {
+            textBox.text = ""
+            textBox.textColor = UIColor.black
+        }
+    }
+}

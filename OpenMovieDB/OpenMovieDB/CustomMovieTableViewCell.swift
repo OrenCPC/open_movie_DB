@@ -41,6 +41,7 @@ class CustomMovieTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         contentView.addSubview(myImageView)
         contentView.addSubview(title)
         contentView.addSubview(releaseDate)
@@ -60,6 +61,7 @@ class CustomMovieTableViewCell: UITableViewCell {
         }
         if imageStringPoster != "N/A" {
             let url = URL(string: imageStringPoster)
+            myImageView.kf.indicatorType = .activity
             myImageView.kf.setImage(with: url)
         }
     }
