@@ -10,17 +10,33 @@ import UIKit
 class DeatilViewController: UIViewController {
     
     private lazy var detailedSearchModel = SearchDetailed()
+    
+    var film = [String:Any]()
 
-    var imdbID = "tt0360717"
+    
+    var imdbID: String = "" {
+        didSet {
+            startSearch(imdbID: imdbID)
+        }
+    }
+    
+    func startSearch(imdbID: String) {
+        print("imdbID: \(imdbID)")
+        detailedSearchModel.searchFilm(imdbID: imdbID) { film in
+            self.film = film
+            print(self.film)
+            self.collectionView.reloadData()
+        }
+    }
+
+//    var imdbID = "tt0360717"
     
     private let customCellsCount = 3
 
-    var film: [String: Any] = ["Title":"The Social Network",
-        "Year":"2010",
-        "Rated":"PG-13","Released":"01 Oct 2010"]
-    
-    
-    
+//    var film: [String: Any] = ["Title":"The Social Network",
+//        "Year":"2010",
+//        "Rated":"PG-13","Released":"01 Oct 2010"]
+//
     
     
     // MARK: Views
@@ -30,13 +46,13 @@ class DeatilViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero , collectionViewLayout: layout)
         
-        collectionView.register(DetailCollectionViewCellWithImage.self, forCellWithReuseIdentifier: DetailCollectionViewCellWithImage.identifier)
+        collectionView.register(PosterCell.self, forCellWithReuseIdentifier: PosterCell.identifier)
         
-        collectionView.register(TitleAndYearCollectionViewCell.self, forCellWithReuseIdentifier: TitleAndYearCollectionViewCell.identifier)
+        collectionView.register(TitleAndYearCell.self, forCellWithReuseIdentifier: TitleAndYearCell.identifier)
         
-        collectionView.register(DetailPeopleCollectionViewCell.self, forCellWithReuseIdentifier: DetailPeopleCollectionViewCell.identifier)
+        collectionView.register(GeneralInfoCell.self, forCellWithReuseIdentifier: GeneralInfoCell.identifier)
         
-        collectionView.register(DetailPlotCollectionViewCell.self, forCellWithReuseIdentifier: DetailPlotCollectionViewCell.identifier)
+        collectionView.register(PlotCell.self, forCellWithReuseIdentifier: PlotCell.identifier)
 
 
         return collectionView
@@ -96,32 +112,33 @@ extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDele
         switch indexPath.row {
             
         case 0: // MARK: Cell 0 (poster)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCellWithImage.identifier, for: indexPath)
-            if let inputCell = cell as? DetailCollectionViewCellWithImage {
-                inputCell.configure(imageStringPoster: "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCell.identifier, for: indexPath)
+            if let inputCell = cell as? PosterCell {
+                guard let poster = film["Poster"] else {return cell}
+                inputCell.configure(imageStringPoster: poster as! String)
             }
             return cell
         case 1: // MARK: Cell 1 (title, releaseDate)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleAndYearCollectionViewCell.identifier, for: indexPath)
-            if let inputCell = cell as? TitleAndYearCollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleAndYearCell.identifier, for: indexPath)
+            if let inputCell = cell as? TitleAndYearCell {
                 inputCell.configure(text: "Sample Title", year: "Sample date")
             }
             return cell
         case 2: //  MARK: Cell 2(Genre, Director, Actors, imdbRating)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPeopleCollectionViewCell.identifier, for: indexPath)
-            if let inputCell = cell as? DetailPeopleCollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GeneralInfoCell.identifier, for: indexPath)
+            if let inputCell = cell as? GeneralInfoCell {
                 inputCell.configure(genre: "Genre", director: "Director", actors: "Oren, Dinur, Oren, Dinur", imdbRating: "9.9")
             }
             return cell
             
         case 3: // MARK: Cell 4(Plot)
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPlotCollectionViewCell.identifier, for: indexPath)
-            if let inputCell = cell as? DetailPlotCollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlotCell.identifier, for: indexPath)
+            if let inputCell = cell as? PlotCell {
                 inputCell.configure(plot: "This is the plot")
             }
             return cell
-        default: return collectionView.dequeueReusableCell(withReuseIdentifier: DetailPlotCollectionViewCell.identifier, for: indexPath)
+        default: return collectionView.dequeueReusableCell(withReuseIdentifier: PlotCell.identifier, for: indexPath)
         }
     }
     

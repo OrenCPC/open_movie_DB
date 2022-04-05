@@ -119,9 +119,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CustomMovieTableViewCell {
-            selectedMovieImdbID = cell.imdbID
+            guard let selectedMovieImdbID = cell.imdbID, !selectedMovieImdbID.isEmpty else {
+                return
+            }
             let newViewController = DeatilViewController()
-//            newViewController.imdbID = selectedMovieImdbID
+            newViewController.imdbID = selectedMovieImdbID
             self.navigationController?.pushViewController(newViewController, animated: true)
             
 

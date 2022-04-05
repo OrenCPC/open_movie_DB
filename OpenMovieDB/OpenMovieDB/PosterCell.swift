@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 
-class DetailCollectionViewCellWithImage: UICollectionViewCell {
+class PosterCell: UICollectionViewCell {
     
     static let identifier = "ImageCell"
     var ratio: CGFloat?

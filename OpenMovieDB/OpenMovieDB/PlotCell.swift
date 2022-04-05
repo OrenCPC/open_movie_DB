@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailPlotCollectionViewCell: UICollectionViewCell {
+class PlotCell: UICollectionViewCell {
    
     static let identifier = "PlotCell"
     

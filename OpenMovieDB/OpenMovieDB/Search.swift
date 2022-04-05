@@ -29,7 +29,6 @@ class Search {
     func searchFilms(text : String, onComplete: ([[String:Any]]) -> Void) {
         url = "https://www.omdbapi.com/?s="+text+"&apikey="+myApiKey
         fetchFilms(url: url) {
-            print(films)
             onComplete(films)
         }
     }

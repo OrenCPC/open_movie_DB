@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TitleAndYearCollectionViewCell: UICollectionViewCell {
+class TitleAndYearCell: UICollectionViewCell {
     
     static let identifier = "TitleAndYearCell"
     

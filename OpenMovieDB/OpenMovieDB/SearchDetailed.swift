@@ -15,24 +15,19 @@ class SearchDetailed {
     private let myApiKey = "757bb97b"
     
     
-    func fetchFilm(url: String, onComplete: () -> Void) {
+    func fetchFilm(url: String, onComplete: @escaping (() -> Void)) {
         Alamofire.request(url).responseJSON{ (response) in
-            if let json = response.result.value as! [String:Any]?{
-                
-                //Check how to use
-                if let responseValue = json[""] as! [String:Any]?{
-                    self.film = responseValue
-                }
+            if let json = response.result.value {
+                self.film = json as! [String: Any]
+                onComplete()
             }
         }
-        onComplete()
     }
     
-    func searchFilms(imdbID : String, onComplete: ([String:Any]) -> Void) {
+    func searchFilm(imdbID : String, onComplete: @escaping (([String:Any]) -> Void)) {
         url = "https://www.omdbapi.com/?i="+imdbID+"&apikey="+myApiKey
         fetchFilm(url: url) {
-            print(film)
-            onComplete(film)
+            onComplete(self.film)
         }
     }
     

@@ -7,8 +7,7 @@
 
 import UIKit
 
-class DetailPeopleCollectionViewCell: UICollectionViewCell {
-    // MARK: Cell 3(Genre, Director, Actors, imdbRating)
+class GeneralInfoCell: UICollectionViewCell {
     
     static let identifier = "GenreDirectorActorsImdbratingCell"
 
