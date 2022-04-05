@@ -32,7 +32,6 @@ class DetailCollectionViewCellWithImage: UICollectionViewCell {
         
         contentView.addSubview(myImageView)
         
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -63,6 +62,9 @@ class DetailCollectionViewCellWithImage: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        self.backgroundColor = .darkGray
+
 
         myImageView.frame = CGRect(x: 0,
                                    y: 0,

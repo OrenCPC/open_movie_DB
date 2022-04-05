@@ -33,6 +33,11 @@ class DeatilViewController: UIViewController {
         collectionView.register(DetailCollectionViewCellWithImage.self, forCellWithReuseIdentifier: DetailCollectionViewCellWithImage.identifier)
         
         collectionView.register(TitleAndYearCollectionViewCell.self, forCellWithReuseIdentifier: TitleAndYearCollectionViewCell.identifier)
+        
+        collectionView.register(DetailPeopleCollectionViewCell.self, forCellWithReuseIdentifier: DetailPeopleCollectionViewCell.identifier)
+        
+        collectionView.register(DetailPlotCollectionViewCell.self, forCellWithReuseIdentifier: DetailPlotCollectionViewCell.identifier)
+
 
         return collectionView
     }()
@@ -79,42 +84,45 @@ extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
-    //myImageView
+    
+    //poster
     //title, releaseDate
-    //
+    //Genre, Director, Actors, imdbRating
+    //Plot
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.row == 0 {
-            // MARK: Cell 1 (Poster)
+        switch indexPath.row {
+            
+        case 0: // MARK: Cell 0 (poster)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCellWithImage.identifier, for: indexPath)
             if let inputCell = cell as? DetailCollectionViewCellWithImage {
-                inputCell.backgroundColor = .blue
                 inputCell.configure(imageStringPoster: "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg")
-//                inputCell.myImageView.image = UIImage(named: "no_image_available")
             }
             return cell
-            
-//        } else if indexPath.row == 1 {
-            
-        } else {
+        case 1: // MARK: Cell 1 (title, releaseDate)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleAndYearCollectionViewCell.identifier, for: indexPath)
             if let inputCell = cell as? TitleAndYearCollectionViewCell {
-                inputCell.backgroundColor = .green
-                inputCell.title.text = "Sample Title"
-                inputCell.releaseDate.text = "Sample date"
+                inputCell.configure(text: "Sample Title", year: "Sample date")
             }
             return cell
-                
+        case 2: //  MARK: Cell 2(Genre, Director, Actors, imdbRating)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPeopleCollectionViewCell.identifier, for: indexPath)
+            if let inputCell = cell as? DetailPeopleCollectionViewCell {
+                inputCell.configure(genre: "Genre", director: "Director", actors: "Oren, Dinur, Oren, Dinur", imdbRating: "9.9")
             }
-//        } else {
-//
-//        }
-//
-       
-        
-        // MARK: Cell 2 (Title and Release Date)
+            return cell
+            
+        case 3: // MARK: Cell 4(Plot)
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPlotCollectionViewCell.identifier, for: indexPath)
+            if let inputCell = cell as? DetailPlotCollectionViewCell {
+                inputCell.configure(plot: "This is the plot")
+            }
+            return cell
+        default: return collectionView.dequeueReusableCell(withReuseIdentifier: DetailPlotCollectionViewCell.identifier, for: indexPath)
+        }
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

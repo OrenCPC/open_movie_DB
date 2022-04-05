@@ -13,14 +13,14 @@ class TitleAndYearCollectionViewCell: UICollectionViewCell {
     
     // MARK: Views
     
-    let title: UILabel = {
+    private let title: UILabel = {
       let label = UILabel()
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
        return label
    }()
    
-    let releaseDate : UILabel = {
+    private let releaseDate : UILabel = {
       let label = UILabel()
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
@@ -41,7 +41,7 @@ class TitleAndYearCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(text: String, year: String, imdbID: String) {
+    func configure(text: String, year: String) {
         title.text = text
         if !year.isEmpty, year.last! == "-" {
             self.releaseDate.text = String(year.dropLast())
@@ -58,16 +58,18 @@ class TitleAndYearCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let imageSize = contentView.frame.size.height - 6
+        
+        self.backgroundColor = .blue
+
 
         title.frame = CGRect(x: 10,
                                y: 0,
-                               width: contentView.frame.size.width - 10 - imageSize,
-                               height: contentView.frame.size.height)
+                               width: contentView.frame.size.width ,
+                               height: contentView.frame.size.height / 3)
         releaseDate.frame = CGRect(x: 10,
                                y: 20,
-                               width: contentView.frame.size.width - 10 - imageSize,
-                               height: contentView.frame.size.height)
+                               width: contentView.frame.size.width ,
+                               height: contentView.frame.size.height / 3)
     }
 
     

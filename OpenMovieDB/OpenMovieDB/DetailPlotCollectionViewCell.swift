@@ -13,7 +13,7 @@ class DetailPlotCollectionViewCell: UICollectionViewCell {
     
     // MARK: Views
     
-    let plot: UILabel = {
+   private let plot: UILabel = {
       let label = UILabel()
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
@@ -34,8 +34,8 @@ class DetailPlotCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(text: String) {
-        plot.text = text
+    func configure(plot: String) {
+        self.plot.text = plot
         
         }
         
@@ -47,13 +47,11 @@ class DetailPlotCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let imageSize = contentView.frame.size.height - 6
 
-        self.backgroundColor = .red
+        self.backgroundColor = .orange
         plot.frame = CGRect(x: 10,
-                               y: 0,
-                               width: contentView.frame.size.width - 10 - imageSize,
-                               height: contentView.frame.size.height)
-        
+                            y: 0,
+                            width: contentView.frame.size.width ,
+                            height: contentView.frame.size.height / 3)
     }
 }
