@@ -19,7 +19,7 @@ class PosterCell: UICollectionViewCell {
    private let myImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "no_image_available")
+//
         imageView.contentMode = .scaleAspectFill
        imageView.clipsToBounds = true
         return imageView
@@ -42,9 +42,12 @@ class PosterCell: UICollectionViewCell {
         if imageStringPoster != "N/A" {
             let url = URL(string: imageStringPoster)
             myImageView.kf.indicatorType = .activity
+            myImageView.kf.indicator?.view.backgroundColor = .black
             myImageView.kf.setImage(with: url)
-            //?
-            guard myImageView.image != nil else { return}
+            guard myImageView.image != nil else {
+                myImageView.image = UIImage(named: "no_image_available")
+                return
+            }
             
             let width = myImageView.image?.size.width
             let height = myImageView.image?.size.height
@@ -63,7 +66,7 @@ class PosterCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.backgroundColor = .darkGray
+//        self.backgroundColor = .darkGray
 
 
         myImageView.frame = CGRect(x: 0,
