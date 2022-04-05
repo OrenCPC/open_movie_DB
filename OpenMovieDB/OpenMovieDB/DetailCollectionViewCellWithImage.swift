@@ -12,14 +12,16 @@ import Kingfisher
 class DetailCollectionViewCellWithImage: UICollectionViewCell {
     
     static let identifier = "ImageCell"
+    var ratio: CGFloat?
     
     // MARK: Views
     
-    let myImageView : UIImageView = {
+   private let myImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "no_image_available")
         imageView.contentMode = .scaleAspectFill
+       imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -42,6 +44,15 @@ class DetailCollectionViewCellWithImage: UICollectionViewCell {
             let url = URL(string: imageStringPoster)
             myImageView.kf.indicatorType = .activity
             myImageView.kf.setImage(with: url)
+            //?
+            guard myImageView.image != nil else { return}
+            
+            let width = myImageView.image?.size.width
+            let height = myImageView.image?.size.height
+            if let height = height, let width = width {
+                ratio = CGFloat(width) / CGFloat(height)
+            }
+
         }
     }
     
@@ -52,13 +63,13 @@ class DetailCollectionViewCellWithImage: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let imageSize = contentView.frame.size.height - 6
 
-        self.backgroundColor = .red
-        myImageView.frame = CGRect(x: contentView.frame.size.width-imageSize,
-                                   y: 3,
-                                   width: imageSize,
-                                   height: imageSize)
+        myImageView.frame = CGRect(x: 0,
+                                   y: 0,
+                                   width: contentView.frame.size.width,
+                                   height: contentView.frame.size.height)
     }
 }
+
+
 

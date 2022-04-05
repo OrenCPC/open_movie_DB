@@ -19,13 +19,20 @@ class DeatilViewController: UIViewController {
         "Year":"2010",
         "Rated":"PG-13","Released":"01 Oct 2010"]
     
+    
+    
+    
+    
     // MARK: Views
    
     let collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 50, height: 50), collectionViewLayout: layout)        
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero , collectionViewLayout: layout)
+        
         collectionView.register(DetailCollectionViewCellWithImage.self, forCellWithReuseIdentifier: DetailCollectionViewCellWithImage.identifier)
-        collectionView.backgroundColor = .black
+        
+        collectionView.register(TitleAndYearCollectionViewCell.self, forCellWithReuseIdentifier: TitleAndYearCollectionViewCell.identifier)
 
         return collectionView
     }()
@@ -38,6 +45,8 @@ class DeatilViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         subviews()
+        collectionView.frame = view.bounds
+
 
     }
 }
@@ -49,25 +58,63 @@ extension DeatilViewController {
     }
     func constraints() {
 
-        collectionView.snp.makeConstraints{ make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.top.equalToSuperview()
-            make.height.width.equalTo(200)
-        }
+//        collectionView.snp.makeConstraints{ make in
+//            make.leading.equalToSuperview()
+//            make.trailing.equalToSuperview()
+//            make.top.equalToSuperview()
+//            make.height.width.equalTo(200)
+//        }
     }
 }
 
 extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            
+            return  CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.size.height/3)
+
+        }
+        return CGSize(width: 200.0, height: 200.0)
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    //myImageView
+    //title, releaseDate
+    //
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCellWithImage.identifier, for: indexPath) as! DetailCollectionViewCellWithImage
-            
+        
+        if indexPath.row == 0 {
+            // MARK: Cell 1 (Poster)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCellWithImage.identifier, for: indexPath)
+            if let inputCell = cell as? DetailCollectionViewCellWithImage {
+                inputCell.backgroundColor = .blue
+                inputCell.configure(imageStringPoster: "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg")
+//                inputCell.myImageView.image = UIImage(named: "no_image_available")
+            }
             return cell
+            
+//        } else if indexPath.row == 1 {
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleAndYearCollectionViewCell.identifier, for: indexPath)
+            if let inputCell = cell as? TitleAndYearCollectionViewCell {
+                inputCell.backgroundColor = .green
+                inputCell.title.text = "Sample Title"
+                inputCell.releaseDate.text = "Sample date"
+            }
+            return cell
+                
+            }
+//        } else {
+//
+//        }
+//
+       
+        
+        // MARK: Cell 2 (Title and Release Date)
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

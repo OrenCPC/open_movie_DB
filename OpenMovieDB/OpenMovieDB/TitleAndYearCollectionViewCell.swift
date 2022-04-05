@@ -20,7 +20,7 @@ class TitleAndYearCollectionViewCell: UICollectionViewCell {
        return label
    }()
    
-   private let releaseDate : UILabel = {
+    let releaseDate : UILabel = {
       let label = UILabel()
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
@@ -60,7 +60,6 @@ class TitleAndYearCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         let imageSize = contentView.frame.size.height - 6
 
-        self.backgroundColor = .red
         title.frame = CGRect(x: 10,
                                y: 0,
                                width: contentView.frame.size.width - 10 - imageSize,
