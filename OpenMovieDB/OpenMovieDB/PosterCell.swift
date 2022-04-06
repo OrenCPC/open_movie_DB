@@ -7,20 +7,19 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
 
 
 class PosterCell: UICollectionViewCell {
     
     static let identifier = "ImageCell"
-    var ratio: CGFloat?
+    private var imageRect = CGRect()
     
     // MARK: Views
     
    private let myImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-//
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
        imageView.clipsToBounds = true
         return imageView
     }()
@@ -32,6 +31,8 @@ class PosterCell: UICollectionViewCell {
         
         contentView.addSubview(myImageView)
         
+        constraints()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,19 +43,25 @@ class PosterCell: UICollectionViewCell {
         if imageStringPoster != "N/A" {
             let url = URL(string: imageStringPoster)
             myImageView.kf.indicatorType = .activity
-            myImageView.kf.indicator?.view.backgroundColor = .black
+            myImageView.kf.indicator?.view.backgroundColor = .white
             myImageView.kf.setImage(with: url)
             guard myImageView.image != nil else {
                 myImageView.image = UIImage(named: "no_image_available")
                 return
             }
             
-            let width = myImageView.image?.size.width
-            let height = myImageView.image?.size.height
-            if let height = height, let width = width {
-                ratio = CGFloat(width) / CGFloat(height)
-            }
-
+//            if let width = myImageView.image?.size.width, let height = myImageView.image?.size.height {
+//                let ratio : CGFloat
+//                if width > height {
+//                    ratio = width / height
+//                } else {
+//                    ratio = height / width
+//                }
+//               let size = CGSize(width: 150 * ratio, height: 150 * ratio)
+//                let x = (bounds.width - size.width) / 2.0
+//                let y = (bounds.height - size.height) / 2.0
+//                imageRect = CGRect(x: x, y: y, width: size.width, height: size.height)
+//            }
         }
     }
     
@@ -65,14 +72,19 @@ class PosterCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-//        self.backgroundColor = .darkGray
 
+        self.backgroundColor = .blue
+//        myImageView.frame = imageRect
+    }
+}
 
-        myImageView.frame = CGRect(x: 0,
-                                   y: 0,
-                                   width: contentView.frame.size.width,
-                                   height: contentView.frame.size.height)
+//Make the image larger
+extension PosterCell {
+    func constraints() {
+        myImageView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+
+        }
     }
 }
 

@@ -17,6 +17,7 @@ class PlotCell: UICollectionViewCell {
       let label = UILabel()
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
+       label.numberOfLines = 0
        return label
    }()
    
@@ -49,9 +50,9 @@ class PlotCell: UICollectionViewCell {
         super.layoutSubviews()
 
         self.backgroundColor = .orange
-        plot.frame = CGRect(x: 10,
-                            y: 0,
+        plot.frame = CGRect(x: 0,
+                            y: 5,
                             width: contentView.frame.size.width ,
-                            height: contentView.frame.size.height / 3)
+                            height: contentView.frame.size.height)
     }
 }

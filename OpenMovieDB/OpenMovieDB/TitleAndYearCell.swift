@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TitleAndYearCell: UICollectionViewCell {
     
@@ -15,15 +16,18 @@ class TitleAndYearCell: UICollectionViewCell {
     
     private let title: UILabel = {
       let label = UILabel()
-       label.font = .systemFont(ofSize: 17, weight: .bold)
-       label.textColor = .white
+        label.font = .systemFont(ofSize: 25, weight: .semibold)
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.backgroundColor = .orange
        return label
    }()
    
     private let releaseDate : UILabel = {
       let label = UILabel()
-       label.font = .systemFont(ofSize: 17, weight: .bold)
-       label.textColor = .white
+       label.font = .systemFont(ofSize: 12, weight: .bold)
+        label.textColor = .white
+        label.backgroundColor = .red
        return label
    }()
     
@@ -34,6 +38,10 @@ class TitleAndYearCell: UICollectionViewCell {
 
         contentView.addSubview(title)
         contentView.addSubview(releaseDate)
+        
+                
+        constraints()
+
 
     }
     
@@ -56,21 +64,28 @@ class TitleAndYearCell: UICollectionViewCell {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.backgroundColor = .blue
+}
 
-
-        title.frame = CGRect(x: 10,
-                               y: 0,
-                               width: contentView.frame.size.width ,
-                               height: contentView.frame.size.height / 3)
-        releaseDate.frame = CGRect(x: 10,
-                               y: 20,
-                               width: contentView.frame.size.width ,
-                               height: contentView.frame.size.height / 3)
-    }
-
+extension TitleAndYearCell {
     
+    func constraints() {
+        
+        title.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.trailing.top.equalToSuperview()
+            make.leading.equalTo(30)
+            make.height.equalTo(100)
+           
+        }
+        
+        releaseDate.snp.makeConstraints { make in
+            make.trailing.bottom.equalToSuperview()
+            make.top.equalTo(title.snp.bottom)
+            make.width.equalToSuperview()
+            make.leading.equalTo(30)
+
+            make.height.equalTo(25)
+            
+        }
+    }
 }
