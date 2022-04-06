@@ -53,15 +53,11 @@ class DeatilViewController: UIViewController {
     // MARK: Setup
 
     override func viewDidLoad() {
-        //
-        imdbID = "tt0489105"
-        //
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         subviews()
         collectionView.frame = view.bounds
-        collectionView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+        collectionView.backgroundColor = UIColor(red: 0.0, green: 0, blue: 0, alpha: 1.0)
 
         
     }

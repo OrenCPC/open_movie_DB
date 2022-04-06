@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PlotCell: UICollectionViewCell {
    
@@ -18,6 +19,7 @@ class PlotCell: UICollectionViewCell {
        label.font = .systemFont(ofSize: 17, weight: .bold)
        label.textColor = .white
        label.numberOfLines = 0
+//       label.backgroundColor = .green
        return label
    }()
    
@@ -28,6 +30,7 @@ class PlotCell: UICollectionViewCell {
         super.init(frame: frame)
 
         contentView.addSubview(plot)
+        constraints()
 
     }
     
@@ -44,15 +47,13 @@ class PlotCell: UICollectionViewCell {
             super.prepareForReuse()
             plot.text = nil
         }
-    
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    }
 
-        self.backgroundColor = .orange
-        plot.frame = CGRect(x: 0,
-                            y: 5,
-                            width: contentView.frame.size.width ,
-                            height: contentView.frame.size.height)
+extension PlotCell {
+    func constraints() {
+        plot.snp.makeConstraints { make in
+            make.trailing.leading.top.equalToSuperview()
+            make.height.equalTo(contentView.frame.size.height)
+        }
     }
 }

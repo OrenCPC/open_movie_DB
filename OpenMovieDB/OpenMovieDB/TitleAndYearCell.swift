@@ -19,7 +19,7 @@ class TitleAndYearCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 25, weight: .semibold)
         label.textColor = .white
         label.numberOfLines = 0
-        label.backgroundColor = .orange
+//        label.backgroundColor = .orange
        return label
    }()
    
@@ -27,7 +27,7 @@ class TitleAndYearCell: UICollectionViewCell {
       let label = UILabel()
        label.font = .systemFont(ofSize: 12, weight: .bold)
         label.textColor = .white
-        label.backgroundColor = .red
+//        label.backgroundColor = .red
        return label
    }()
     
@@ -73,7 +73,7 @@ extension TitleAndYearCell {
         title.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.trailing.top.equalToSuperview()
-            make.leading.equalTo(30)
+            make.leading.trailing.equalTo(30)
             make.height.equalTo(100)
            
         }

@@ -18,7 +18,7 @@ class CustomMovieTableViewCell: UITableViewCell {
     private let myImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "no_image_available")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()

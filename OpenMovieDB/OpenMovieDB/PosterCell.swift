@@ -73,7 +73,7 @@ class PosterCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.backgroundColor = .blue
+//        self.backgroundColor = .blue
 //        myImageView.frame = imageRect
     }
 }

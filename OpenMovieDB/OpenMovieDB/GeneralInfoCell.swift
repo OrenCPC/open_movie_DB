@@ -68,10 +68,10 @@ class GeneralInfoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func configure(genre: String, director: String, actors: String, imdbRating: String) {
-        self.genre.text = genre
-        self.director.text = director
-        self.actors.text = actors
-        self.imdbRating.text = imdbRating
+        self.genre.text = "Genre: " + genre
+        self.director.text = "Director: " + director
+        self.actors.text = "Actors: " + actors
+        self.imdbRating.text = "imdb Rating: " + imdbRating
         
     }
         
@@ -82,29 +82,7 @@ class GeneralInfoCell: UICollectionViewCell {
             actors.text = nil
             imdbRating.text = nil
         }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        self.backgroundColor = .lightGray
-//
-//        genre.frame = CGRect(x: 10,
-//                            y: 0,
-//                            width: contentView.frame.size.width / 4 ,
-//                            height: contentView.frame.size.height / 4)
-//        director.frame = CGRect(x: 10,
-//                                y: 30,
-//                                width: contentView.frame.size.width ,
-//                                height: contentView.frame.size.height / 4)
-//        actors.frame = CGRect(x: 10,
-//                              y: 60,
-//                              width: contentView.frame.size.width ,
-//                              height: contentView.frame.size.height / 4)
-//        imdbRating.frame = CGRect(x: 10,
-//                                  y: 90,
-//                                  width: contentView.frame.size.width ,
-//                                  height: contentView.frame.size.height / 4)
-//        }
+
     }
 
 extension GeneralInfoCell {
