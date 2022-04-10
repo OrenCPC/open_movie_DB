@@ -12,7 +12,6 @@ import SnapKit
 class ViewController: UIViewController {
     
     private lazy var searchModel = Search()
-    var films = [[String:Any]]()
     var selectedMovieImdbID: String?
 
     
@@ -26,10 +25,10 @@ class ViewController: UIViewController {
     
     private let textBox : UITextView = {
         let textBox = UITextView()
-        textBox.backgroundColor = .secondarySystemBackground
-        textBox.textColor = .secondaryLabel
         textBox.font = UIFont.preferredFont(forTextStyle: .body)
         textBox.layer.cornerRadius = 20
+        textBox.text = "Search for movies"
+        textBox.textColor = UIColor.lightGray
         return textBox
     }()
 
@@ -38,26 +37,17 @@ class ViewController: UIViewController {
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        textBox.delegate = self
-        textBox.text = "Search for movies"
-        textBox.textColor = UIColor.lightGray
-        
         view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
                 
+        delegates()
         subviews()
         constraints()
-        
-        startSearch(text: "Breaking Bad")
+        startSearch(text: getRandomMovie())
     }
     
     
     func startSearch(text: String) {
         searchModel.searchFilms(text: text) {films in
-            self.films = films
             self.tableView.reloadData()
         }
     }
@@ -71,17 +61,21 @@ extension ViewController {
         view.addSubview(textBox)
     }
     
+    func delegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        textBox.delegate = self
+    }
+    
     func constraints() {
-        let sizeThatFits = textBox.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
-
-        textBox.snp.makeConstraints{ make in
+        textBox.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalToSuperview().offset(100)
-            make.height.equalTo(sizeThatFits)
+            make.height.equalTo(view.frame.size.height / 20)
         }
         
-        tableView.snp.makeConstraints{ make in
+        tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(textBox.snp.bottom).offset(30)
         }
@@ -95,14 +89,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return films.count
+        return searchModel.films.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomMovieTableViewCell.identifier, for: indexPath)
         if let inputCell = cell as? CustomMovieTableViewCell {
-            if films.count > 0 {
-                let filmData = films[indexPath.row]
+            if searchModel.films.count > 0 {
+                let filmData = searchModel.films[indexPath.row]
                 let imageStringPoster = filmData["Poster"] as! String
                 let year = filmData["Year"] as! String
                 let filmTitle = filmData["Title"] as! String
@@ -125,21 +119,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let newViewController = DeatilViewController()
             newViewController.imdbID = selectedMovieImdbID
             self.navigationController?.pushViewController(newViewController, animated: true)
-            
-
-
          }
     }
-    
-    
-    
-    
 }
 
 extension ViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        startSearch(text: textView.text)
+        if textView.text.count > 2 {
+            startSearch(text: textView.text)
+        } else {
+            searchModel.clearFilms()
+            tableView.reloadData()
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -84,11 +84,13 @@ extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         switch indexPath.row {
+            
         case 0:
             return  CGSize(width: collectionView.frame.size.width, height: 130)
-        case 1:
             
+        case 1:
             return  CGSize(width: collectionView.frame.size.width, height: 200)
+            
         case 2:
             return  CGSize(width: collectionView.frame.size.width, height: 200)
 
@@ -124,10 +126,6 @@ extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDele
             }
             return cell
             
-            
-            
-            
-            
         case 2: //  MARK: Cell 2(Genre, Director, Actors, imdbRating)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GeneralInfoCell.identifier, for: indexPath)
             if let inputCell = cell as? GeneralInfoCell {
@@ -151,7 +149,6 @@ extension DeatilViewController: UICollectionViewDataSource, UICollectionViewDele
         default: return collectionView.dequeueReusableCell(withReuseIdentifier: PlotCell.identifier, for: indexPath)
         }
     }
-    
     
     
     func getCustomCellsCount() -> Int {

@@ -15,21 +15,25 @@ class Search {
     private (set) var films = [[String:Any]]()
     private let myApiKey = "757bb97b"
     
-    func fetchFilms(url: String, onComplete: () -> Void) {
+    func clearFilms() {
+        films = []
+    }
+    
+    func fetchFilms(url: String, onComplete:@escaping (() -> Void)) {
         Alamofire.request(url).responseJSON{ (response) in
             if let json = response.result.value as! [String:Any]?{
                 if let responseValue = json["Search"] as! [[String:Any]]?{
                     self.films = responseValue
+                    onComplete()
                 }
             } 
         }
-        onComplete()
     }
     
-    func searchFilms(text : String, onComplete: ([[String:Any]]) -> Void) {
+    func searchFilms(text : String, onComplete: @escaping (([[String:Any]]) -> Void)) {
         url = "https://www.omdbapi.com/?s="+text+"&apikey="+myApiKey
         fetchFilms(url: url) {
-            onComplete(films)
+            onComplete(self.films)
         }
     }
 }

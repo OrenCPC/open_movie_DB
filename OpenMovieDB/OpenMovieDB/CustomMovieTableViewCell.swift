@@ -27,6 +27,7 @@ class CustomMovieTableViewCell: UITableViewCell {
        let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.textColor = .white
+         label.numberOfLines = 0
         return label
     }()
     
@@ -48,6 +49,8 @@ class CustomMovieTableViewCell: UITableViewCell {
         contentView.addSubview(myImageView)
         contentView.addSubview(title)
         contentView.addSubview(releaseDate)
+        
+        constraints()
 
     }
     
@@ -56,6 +59,8 @@ class CustomMovieTableViewCell: UITableViewCell {
     }
     
     func configure(text: String, imageStringPoster: String, year: String, imdbID: String) {
+        self.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+        
         title.text = text
         if !year.isEmpty, year.last! == "-" {
             self.releaseDate.text = String(year.dropLast())
@@ -68,6 +73,8 @@ class CustomMovieTableViewCell: UITableViewCell {
             myImageView.kf.setImage(with: url)
         }
         self.imdbID = imdbID
+        
+//        if title.text == "Breaking Bad" { contentView.backgroundColor = .blue}
     }
     
     override func prepareForReuse() {
@@ -77,28 +84,31 @@ class CustomMovieTableViewCell: UITableViewCell {
         releaseDate.text = nil
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+    
+}
 
+extension CustomMovieTableViewCell {
+    func constraints() {
+        title.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalTo(myImageView.snp.leading).offset(-10)
+            make.height.equalTo(110)
+            make.width.equalTo(contentView.frame.size.width / 2)
+        }
         
-        let imageSize = contentView.frame.size.height - 6
+        releaseDate.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10)
+            make.height.equalTo(50)
+            make.width.equalToSuperview()
+            make.top.equalTo(title.snp.bottom).offset(10)
+        }
         
-        title.frame = CGRect(x: 10,
-                               y: 0,
-                               width: contentView.frame.size.width - 10 - imageSize,
-                               height: contentView.frame.size.height)
-        releaseDate.frame = CGRect(x: 10,
-                               y: 20,
-                               width: contentView.frame.size.width - 10 - imageSize,
-                               height: contentView.frame.size.height)
-        
-        
-        myImageView.frame = CGRect(x: contentView.frame.size.width-imageSize,
-                                   y: 3,
-                                   width: imageSize,
-                                   height: imageSize)
+        myImageView.snp.makeConstraints { make in
+            make.height.equalToSuperview()
+            make.centerY.top.bottom.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview()
+            make.width.equalTo(contentView.frame.size.width / 2)
+        }
     }
 }
 

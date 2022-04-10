@@ -22,6 +22,7 @@
 		683D51E727FB479E0035885A /* TitleAndYearCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E627FB479E0035885A /* TitleAndYearCell.swift */; };
 		683D51E927FB48EC0035885A /* PlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E827FB48EC0035885A /* PlotCell.swift */; };
 		683D51EB27FB49E90035885A /* GeneralInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51EA27FB49E90035885A /* GeneralInfoCell.swift */; };
+		68D602742802D3AD000C9FFD /* ViewController+RandomMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D602732802D3AD000C9FFD /* ViewController+RandomMovies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		683D51E627FB479E0035885A /* TitleAndYearCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndYearCell.swift; sourceTree = "<group>"; };
 		683D51E827FB48EC0035885A /* PlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotCell.swift; sourceTree = "<group>"; };
 		683D51EA27FB49E90035885A /* GeneralInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoCell.swift; sourceTree = "<group>"; };
+		68D602732802D3AD000C9FFD /* ViewController+RandomMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+RandomMovies.swift"; sourceTree = "<group>"; };
 		ACE6BF4C594B5AAADD66023D /* Pods-OpenMovieDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenMovieDB.debug.xcconfig"; path = "Target Support Files/Pods-OpenMovieDB/Pods-OpenMovieDB.debug.xcconfig"; sourceTree = "<group>"; };
 		CB6B6FB2B69C96A2BBCAAD57 /* Pods_OpenMovieDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenMovieDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				683D51D627F98E3A0035885A /* CustomMovieTableViewCell.swift */,
 				683D51DC27FAE6540035885A /* Search.swift */,
 				683D51DE27FB07020035885A /* DeatilViewController.swift */,
+				68D602732802D3AD000C9FFD /* ViewController+RandomMovies.swift */,
 				683D51E027FB0B720035885A /* PosterCell.swift */,
 				683D51E627FB479E0035885A /* TitleAndYearCell.swift */,
 				683D51E827FB48EC0035885A /* PlotCell.swift */,
@@ -248,6 +251,7 @@
 				683D51EB27FB49E90035885A /* GeneralInfoCell.swift in Sources */,
 				683D51DD27FAE6540035885A /* Search.swift in Sources */,
 				683D51BE27F96DAF0035885A /* AppDelegate.swift in Sources */,
+				68D602742802D3AD000C9FFD /* ViewController+RandomMovies.swift in Sources */,
 				683D51C027F96DAF0035885A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
