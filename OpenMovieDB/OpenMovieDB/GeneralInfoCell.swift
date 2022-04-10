@@ -14,13 +14,22 @@ class GeneralInfoCell: UICollectionViewCell {
 
     // MARK: Views
 
-   private let genre: UILabel = {
+   fileprivate lazy var genre: UILabel = {
       let label = UILabel()
        label.numberOfLines = 0
        label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
        return label
    }()
+    
+    private let genreTitle: UILabel = {
+       let label = UILabel()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .white
+        label.text = "Genre: "
+        return label
+    }()
     
     private let director: UILabel = {
       let label = UILabel()
@@ -47,6 +56,7 @@ class GeneralInfoCell: UICollectionViewCell {
    }()
 
     // MARK: Setup
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         subviews()
@@ -80,13 +90,13 @@ extension GeneralInfoCell {
         contentView.addSubview(director)
         contentView.addSubview(actors)
         contentView.addSubview(imdbRating)
+        contentView.addSubview(genreTitle)
     }
     
     func constraints() {
         genre.snp.makeConstraints { make in
             make.width.leading.trailing.top.equalToSuperview()
             make.height.equalTo(contentView.frame.size.height / 4)
-            
         }
         
         director.snp.makeConstraints { make in

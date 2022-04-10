@@ -20,7 +20,7 @@ class PosterCell: UICollectionViewCell {
    private let myImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-       imageView.clipsToBounds = true
+        imageView.clipsToBounds = true
         return imageView
     }()
     

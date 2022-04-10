@@ -18,7 +18,7 @@ class MovieTVCell: UITableViewCell {
     private let myImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "no_image_available")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -104,7 +104,7 @@ extension MovieTVCell {
         
         myImageView.snp.makeConstraints { make in
             make.height.equalToSuperview()
-            make.centerY.top.bottom.equalToSuperview().offset(10)
+            make.centerY.top.bottom.equalToSuperview()
             make.trailing.equalToSuperview()
             make.width.equalTo(contentView.frame.size.width / 2)
         }
