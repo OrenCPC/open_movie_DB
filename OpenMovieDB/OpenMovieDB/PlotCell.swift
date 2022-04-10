@@ -16,7 +16,7 @@ class PlotCell: UICollectionViewCell {
     
    private let plot: UILabel = {
       let label = UILabel()
-       label.font = .systemFont(ofSize: 17, weight: .bold)
+       label.font = .systemFont(ofSize: 20, weight: .bold)
        label.textColor = .white
        label.numberOfLines = 0
 //       label.backgroundColor = .green
@@ -50,10 +50,11 @@ class PlotCell: UICollectionViewCell {
     }
 
 extension PlotCell {
+    
     func constraints() {
         plot.snp.makeConstraints { make in
-            make.trailing.leading.top.equalToSuperview()
-            make.height.equalTo(contentView.frame.size.height)
+            make.trailing.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(15)
         }
     }
 }

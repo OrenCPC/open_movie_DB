@@ -17,7 +17,7 @@ class GeneralInfoCell: UICollectionViewCell {
    private let genre: UILabel = {
       let label = UILabel()
        label.numberOfLines = 0
-       label.font = .systemFont(ofSize: 17, weight: .bold)
+       label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
 //       label.backgroundColor = .green
        return label
@@ -26,7 +26,7 @@ class GeneralInfoCell: UICollectionViewCell {
     private let director: UILabel = {
       let label = UILabel()
         label.numberOfLines = 0
-       label.font = .systemFont(ofSize: 17, weight: .bold)
+       label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
 //        label.backgroundColor = .black
        return label
@@ -35,7 +35,7 @@ class GeneralInfoCell: UICollectionViewCell {
     private let actors: UILabel = {
       let label = UILabel()
         label.numberOfLines = 0
-       label.font = .systemFont(ofSize: 17, weight: .bold)
+       label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
 //        label.backgroundColor = .green
        return label
@@ -44,7 +44,7 @@ class GeneralInfoCell: UICollectionViewCell {
     private let imdbRating: UILabel = {
       let label = UILabel()
         label.numberOfLines = 0
-       label.font = .systemFont(ofSize: 17, weight: .bold)
+       label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
 //        label.backgroundColor = .black
        return label
