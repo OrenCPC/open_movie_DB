@@ -19,7 +19,6 @@ class GeneralInfoCell: UICollectionViewCell {
        label.numberOfLines = 0
        label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
-//       label.backgroundColor = .green
        return label
    }()
     
@@ -28,7 +27,6 @@ class GeneralInfoCell: UICollectionViewCell {
         label.numberOfLines = 0
        label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
-//        label.backgroundColor = .black
        return label
    }()
     
@@ -37,7 +35,6 @@ class GeneralInfoCell: UICollectionViewCell {
         label.numberOfLines = 0
        label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
-//        label.backgroundColor = .green
        return label
    }()
     
@@ -46,33 +43,25 @@ class GeneralInfoCell: UICollectionViewCell {
         label.numberOfLines = 0
        label.font = .systemFont(ofSize: 17, weight: .semibold)
        label.textColor = .white
-//        label.backgroundColor = .black
        return label
    }()
 
     // MARK: Setup
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        contentView.addSubview(genre)
-        contentView.addSubview(director)
-        contentView.addSubview(actors)
-        contentView.addSubview(imdbRating)
-        
+        subviews()
         constraints()
-        
-//        contentView.backgroundColor = .orange
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func configure(genre: String, director: String, actors: String, imdbRating: String) {
         self.genre.text = "Genre: " + genre
         self.director.text = "Director: " + director
         self.actors.text = "Actors: " + actors
         self.imdbRating.text = "imdb Rating: " + imdbRating
-        
     }
         
     override func prepareForReuse() {
@@ -82,10 +71,17 @@ class GeneralInfoCell: UICollectionViewCell {
             actors.text = nil
             imdbRating.text = nil
         }
-
     }
 
 extension GeneralInfoCell {
+    
+    func subviews() {
+        contentView.addSubview(genre)
+        contentView.addSubview(director)
+        contentView.addSubview(actors)
+        contentView.addSubview(imdbRating)
+    }
+    
     func constraints() {
         genre.snp.makeConstraints { make in
             make.width.leading.trailing.top.equalToSuperview()

@@ -19,7 +19,6 @@ class PlotCell: UICollectionViewCell {
        label.font = .systemFont(ofSize: 20, weight: .bold)
        label.textColor = .white
        label.numberOfLines = 0
-//       label.backgroundColor = .green
        return label
    }()
    
@@ -28,10 +27,8 @@ class PlotCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         contentView.addSubview(plot)
         constraints()
-
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +37,6 @@ class PlotCell: UICollectionViewCell {
     
     func configure(plot: String) {
         self.plot.text = plot
-        
         }
         
     override func prepareForReuse() {

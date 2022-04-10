@@ -19,7 +19,6 @@ class TitleAndYearCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 25, weight: .semibold)
         label.textColor = .white
         label.numberOfLines = 0
-//        label.backgroundColor = .orange
        return label
    }()
    
@@ -27,7 +26,6 @@ class TitleAndYearCell: UICollectionViewCell {
       let label = UILabel()
        label.font = .systemFont(ofSize: 12, weight: .bold)
         label.textColor = .white
-//        label.backgroundColor = .red
        return label
    }()
     
@@ -35,14 +33,8 @@ class TitleAndYearCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        contentView.addSubview(title)
-        contentView.addSubview(releaseDate)
-        
-                
+        subviews()
         constraints()
-
-
     }
     
     required init?(coder: NSCoder) {
@@ -68,14 +60,18 @@ class TitleAndYearCell: UICollectionViewCell {
 
 extension TitleAndYearCell {
     
+    func subviews() {
+        contentView.addSubview(title)
+        contentView.addSubview(releaseDate)
+    }
+    
     func constraints() {
         
         title.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.trailing.top.equalToSuperview()
-            make.leading.trailing.equalTo(30)
-            make.height.equalTo(100)
-           
+            make.leading.equalTo(30)
+            make.height.equalTo(60)
         }
         
         releaseDate.snp.makeConstraints { make in
@@ -83,7 +79,6 @@ extension TitleAndYearCell {
             make.top.equalTo(title.snp.bottom)
             make.width.equalToSuperview()
             make.leading.equalTo(30)
-
             make.height.equalTo(25)
             
         }

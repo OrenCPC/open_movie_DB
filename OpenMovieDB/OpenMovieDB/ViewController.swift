@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     // MARK: Views
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(CustomMovieTableViewCell.self, forCellReuseIdentifier: CustomMovieTableViewCell.identifier)
+        tableView.register(MovieTVCell.self, forCellReuseIdentifier: MovieTVCell.identifier)
         return tableView
     }()
     
@@ -93,8 +93,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomMovieTableViewCell.identifier, for: indexPath)
-        if let inputCell = cell as? CustomMovieTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTVCell.identifier, for: indexPath)
+        if let inputCell = cell as? MovieTVCell {
             if searchModel.films.count > 0 {
                 let filmData = searchModel.films[indexPath.row]
                 let imageStringPoster = filmData["Poster"] as! String
@@ -112,7 +112,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? CustomMovieTableViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? MovieTVCell {
             guard let selectedMovieImdbID = cell.imdbID, !selectedMovieImdbID.isEmpty else {
                 return
             }

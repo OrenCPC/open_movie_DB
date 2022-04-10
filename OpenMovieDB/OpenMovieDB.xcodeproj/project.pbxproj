@@ -14,7 +14,7 @@
 		683D51C527F96DAF0035885A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683D51C327F96DAF0035885A /* Main.storyboard */; };
 		683D51C727F96DB10035885A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683D51C627F96DB10035885A /* Assets.xcassets */; };
 		683D51CA27F96DB10035885A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683D51C827F96DB10035885A /* LaunchScreen.storyboard */; };
-		683D51D727F98E3A0035885A /* CustomMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51D627F98E3A0035885A /* CustomMovieTableViewCell.swift */; };
+		683D51D727F98E3A0035885A /* MovieTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51D627F98E3A0035885A /* MovieTVCell.swift */; };
 		683D51DD27FAE6540035885A /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51DC27FAE6540035885A /* Search.swift */; };
 		683D51DF27FB07020035885A /* DeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51DE27FB07020035885A /* DeatilViewController.swift */; };
 		683D51E127FB0B720035885A /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683D51E027FB0B720035885A /* PosterCell.swift */; };
@@ -35,7 +35,7 @@
 		683D51C627F96DB10035885A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683D51C927F96DB10035885A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		683D51CB27F96DB10035885A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		683D51D627F98E3A0035885A /* CustomMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMovieTableViewCell.swift; sourceTree = "<group>"; };
+		683D51D627F98E3A0035885A /* MovieTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVCell.swift; sourceTree = "<group>"; };
 		683D51DC27FAE6540035885A /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		683D51DE27FB07020035885A /* DeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatilViewController.swift; sourceTree = "<group>"; };
 		683D51E027FB0B720035885A /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 				683D51D127F96DEC0035885A /* Supporting Files */,
 				683D51BF27F96DAF0035885A /* SceneDelegate.swift */,
 				683D51C127F96DAF0035885A /* ViewController.swift */,
-				683D51D627F98E3A0035885A /* CustomMovieTableViewCell.swift */,
+				683D51D627F98E3A0035885A /* MovieTVCell.swift */,
 				683D51DC27FAE6540035885A /* Search.swift */,
 				683D51DE27FB07020035885A /* DeatilViewController.swift */,
 				68D602732802D3AD000C9FFD /* ViewController+RandomMovies.swift */,
@@ -244,7 +244,7 @@
 				683D51E727FB479E0035885A /* TitleAndYearCell.swift in Sources */,
 				683D51E127FB0B720035885A /* PosterCell.swift in Sources */,
 				683D51E327FB0FE10035885A /* SearchDetailed.swift in Sources */,
-				683D51D727F98E3A0035885A /* CustomMovieTableViewCell.swift in Sources */,
+				683D51D727F98E3A0035885A /* MovieTVCell.swift in Sources */,
 				683D51DF27FB07020035885A /* DeatilViewController.swift in Sources */,
 				683D51C227F96DAF0035885A /* ViewController.swift in Sources */,
 				683D51E927FB48EC0035885A /* PlotCell.swift in Sources */,

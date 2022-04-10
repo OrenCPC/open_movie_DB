@@ -30,9 +30,7 @@ class PosterCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(myImageView)
-        
         constraints()
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,25 +41,11 @@ class PosterCell: UICollectionViewCell {
         if imageStringPoster != "N/A" {
             let url = URL(string: imageStringPoster)
             myImageView.kf.indicatorType = .activity
-            myImageView.kf.indicator?.view.backgroundColor = .white
             myImageView.kf.setImage(with: url)
             guard myImageView.image != nil else {
                 myImageView.image = UIImage(named: "no_image_available")
                 return
             }
-            
-//            if let width = myImageView.image?.size.width, let height = myImageView.image?.size.height {
-//                let ratio : CGFloat
-//                if width > height {
-//                    ratio = width / height
-//                } else {
-//                    ratio = height / width
-//                }
-//               let size = CGSize(width: 150 * ratio, height: 150 * ratio)
-//                let x = (bounds.width - size.width) / 2.0
-//                let y = (bounds.height - size.height) / 2.0
-//                imageRect = CGRect(x: x, y: y, width: size.width, height: size.height)
-//            }
         }
     }
     
@@ -69,16 +53,8 @@ class PosterCell: UICollectionViewCell {
         super.prepareForReuse()
         myImageView.image = nil
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-//        self.backgroundColor = .blue
-//        myImageView.frame = imageRect
-    }
 }
 
-//Make the image larger
 extension PosterCell {
     func constraints() {
         myImageView.snp.makeConstraints { make in

@@ -14,6 +14,9 @@ class SearchDetailed {
     private (set) var film = [String:Any]()
     private let myApiKey = "757bb97b"
     
+    func clearFilm() {
+        film = [:]
+    }
     
     func fetchFilm(url: String, onComplete: @escaping (() -> Void)) {
         Alamofire.request(url).responseJSON{ (response) in
